@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,6 +15,64 @@
 
         // Display the amount on the page
         document.getElementById('amountDisplay').textContent = `Amount: ${amount}`;
+    </script>
+</body>
+</html>
+
+ -->
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Amount</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .success-icon {
+            font-size: 80px;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+        .success-message {
+            font-size: 24px;
+            color: #333;
+        }
+        .amount {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-icon">&#10004;</div> <!-- Green check mark -->
+        <div id="amountDisplay" class="success-message">
+            Topping up of <span class="amount"></span> to your Ignite wallet is successful!
+        </div>
+    </div>
+
+    <script>
+        // Get the 'amount' parameter from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const amount = urlParams.get('amount');
+
+        // Display the amount on the page
+        document.querySelector('.amount').textContent = `${amount}`;
     </script>
 </body>
 </html>
