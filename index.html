@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Amount</title>
+</head>
+<body>
+    <h1 id="amountDisplay">Amount:</h1>
+
+    <script>
+        // Get the 'amount' parameter from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const amount = urlParams.get('amount');
+
+        // Display the amount on the page
+        document.getElementById('amountDisplay').textContent = `Amount: ${amount}`;
+    </script>
+</body>
+</html>
