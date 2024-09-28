@@ -50,10 +50,16 @@
             border: 1px solid #ccc;
             margin-top: 10px;
         }
-        .error {
+        .result-message {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .success {
+            color: green;
+        }
+        .fail {
             color: red;
-            font-size: 14px;
-            margin-top: 10px;
         }
     </style>
 </head>
@@ -66,8 +72,8 @@
             Enter the passcode:
         </div>
         <input type="password" id="passcodeInput" placeholder="Enter passcode">
-        <div id="errorMessage" class="error"></div>
-        <button id="confirmButton" disabled>Confirm Transaction</button>
+        <button id="confirmButton">Confirm Transaction</button>
+        <div id="resultMessage" class="result-message"></div>
     </div>
 
     <script>
@@ -81,28 +87,22 @@
         // Elements
         const passcodeInput = document.getElementById('passcodeInput');
         const confirmButton = document.getElementById('confirmButton');
-        const errorMessage = document.getElementById('errorMessage');
+        const resultMessage = document.getElementById('resultMessage');
 
-        // Function to validate passcode
-        passcodeInput.addEventListener('input', () => {
-            const passcode = passcodeInput.value;
-            if (passcode === '123') {
-                confirmButton.disabled = false;
-                errorMessage.textContent = ''; // Clear any error message
-            } else {
-                confirmButton.disabled = true;
-                errorMessage.textContent = 'Invalid passcode. Please enter the correct passcode.'; // Show error message
-            }
-        });
-
-        // Handle the button click to reload with 'clicked=true'
+        // Handle the button click to validate passcode
         confirmButton.addEventListener('click', () => {
-            const currentUrl = window.location.href;
-            const newUrl = currentUrl.includes('clicked')
-                ? currentUrl.replace('clicked=false', 'clicked=true')
-                : `${currentUrl}&clicked=true`;
-
-            window.location.href = newUrl; // Reload the page with 'clicked=true'
+            const passcode = passcodeInput.value;
+            
+            // Check if passcode is correct
+            if (passcode === '123') {
+                resultMessage.textContent = "Success!";
+                resultMessage.classList.add('success');
+                resultMessage.classList.remove('fail');
+            } else {
+                resultMessage.textContent = "Fail!";
+                resultMessage.classList.add('fail');
+                resultMessage.classList.remove('success');
+            }
         });
     </script>
 </body>
