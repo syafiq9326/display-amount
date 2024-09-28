@@ -1,27 +1,4 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Display Amount</title>
-</head>
-<body>
-    <h1 id="amountDisplay">Amount:</h1>
-
-    <script>
-        // Get the 'amount' parameter from the URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const amount = urlParams.get('amount');
-
-        // Display the amount on the page
-        document.getElementById('amountDisplay').textContent = `Amount: ${amount}`;
-    </script>
-</body>
-</html>
-
- -->
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -56,14 +33,25 @@
         .amount {
             font-weight: bold;
         }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="success-icon">&#10004;</div> <!-- Green check mark -->
         <div id="amountDisplay" class="success-message">
-            Topping up of <span  class="amount" ></span> USD to your Ignite wallet is successful!
+            Topping up of <span class="amount"></span> USD to your Ignite wallet is successful!
         </div>
+        <button id="confirmButton">Confirm Transaction</button>
     </div>
 
     <script>
@@ -73,6 +61,16 @@
 
         // Display the amount on the page
         document.querySelector('.amount').textContent = `${amount}`;
+
+        // Handle the button click to reload with 'clicked=true'
+        document.getElementById('confirmButton').addEventListener('click', () => {
+            const currentUrl = window.location.href;
+            const newUrl = currentUrl.includes('clicked')
+                ? currentUrl.replace('clicked=false', 'clicked=true')
+                : `${currentUrl}&clicked=true`;
+
+            window.location.href = newUrl; // Reload the page with 'clicked=true'
+        });
     </script>
 </body>
 </html>
