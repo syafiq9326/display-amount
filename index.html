@@ -43,15 +43,31 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="success-icon">&#10004;</div> <!-- Green check mark -->
         <div id="amountDisplay" class="success-message">
-            Tops up of <span class="amount"></span> USD to your Ignite wallet is successful!
+            Do you confirm top up of <span class="amount"></span> USD to your Ignite wallet?
+            <br>
+            Enter the passcode:
         </div>
-        <button id="confirmButton">Confirm Transaction</button>
+        <input type="password" id="passcodeInput" placeholder="Enter passcode">
+        <div id="errorMessage" class="error"></div>
+        <button id="confirmButton" disabled>Confirm Transaction</button>
     </div>
 
     <script>
@@ -62,8 +78,25 @@
         // Display the amount on the page
         document.querySelector('.amount').textContent = `${amount}`;
 
+        // Elements
+        const passcodeInput = document.getElementById('passcodeInput');
+        const confirmButton = document.getElementById('confirmButton');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Function to validate passcode
+        passcodeInput.addEventListener('input', () => {
+            const passcode = passcodeInput.value;
+            if (passcode === '123') {
+                confirmButton.disabled = false;
+                errorMessage.textContent = ''; // Clear any error message
+            } else {
+                confirmButton.disabled = true;
+                errorMessage.textContent = 'Invalid passcode. Please enter the correct passcode.'; // Show error message
+            }
+        });
+
         // Handle the button click to reload with 'clicked=true'
-        document.getElementById('confirmButton').addEventListener('click', () => {
+        confirmButton.addEventListener('click', () => {
             const currentUrl = window.location.href;
             const newUrl = currentUrl.includes('clicked')
                 ? currentUrl.replace('clicked=false', 'clicked=true')
