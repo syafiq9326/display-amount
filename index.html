@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Amount</title>
+</head>
+<body>
+    <h1 id="amountDisplay">Amount:</h1>
+
+    <script>
+        // Get the 'amount' parameter from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const amount = urlParams.get('amount');
+
+        // Display the amount on the page
+        document.getElementById('amountDisplay').textContent = Amount: ${amount};
+    </script>
+</body>
+</html>
+
+ -->
+
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -33,47 +56,14 @@
         .amount {
             font-weight: bold;
         }
-        button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        input {
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            margin-top: 10px;
-        }
-        .result-message {
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-        .success {
-            color: green;
-        }
-        .fail {
-            color: red;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="success-icon">&#10004;</div> <!-- Green check mark -->
         <div id="amountDisplay" class="success-message">
-            Do you confirm top up of <span class="amount"></span> USD to your Ignite wallet?
-            <br>
-            Enter the passcode:
+            Topping up of <span  class="amount" ></span> USD to your Ignite wallet is successful!
         </div>
-        <input type="password" id="passcodeInput" placeholder="Enter passcode">
-        <button id="confirmButton">Confirm Transaction</button>
-        <div id="resultMessage" class="result-message"></div>
     </div>
 
     <script>
@@ -82,28 +72,7 @@
         const amount = urlParams.get('amount');
 
         // Display the amount on the page
-        document.querySelector('.amount').textContent = `${amount}`;
-
-        // Elements
-        const passcodeInput = document.getElementById('passcodeInput');
-        const confirmButton = document.getElementById('confirmButton');
-        const resultMessage = document.getElementById('resultMessage');
-
-        // Handle the button click to validate passcode
-        confirmButton.addEventListener('click', () => {
-            const passcode = passcodeInput.value;
-            
-            // Check if passcode is correct
-            if (passcode === '123') {
-                resultMessage.textContent = "Success!";
-                resultMessage.classList.add('success');
-                resultMessage.classList.remove('fail');
-            } else {
-                resultMessage.textContent = "Fail!";
-                resultMessage.classList.add('fail');
-                resultMessage.classList.remove('success');
-            }
-        });
+        document.querySelector('.amount').textContent = ${amount};
     </script>
 </body>
 </html>
